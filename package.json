@@ -1,0 +1,25 @@
+{
+  "name": "libro",
+  "version": "0.0.1",
+  "description": "practico con express y mysql",
+  "author": "martin",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "mysql-console": "node model/mysql_consol.js",
+    "show-db": "node model/mysql_consol.js show-databases",
+    "show-tbl": "node model/mysql_consol.js show-tables",
+    "show-col": "node model/mysql_consol.js show-columns"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "mysql2": "^3.14.1",
+    "pug": "^3.0.2",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

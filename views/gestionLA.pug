@@ -1,0 +1,89 @@
+extends layout
+
+block content
+    h1 Panel de Control
+
+    .modulo
+        h2 Gestión de Libros
+        button#btn-mostrar-libros Mostrar Libros
+        button#btn-agregar-libro Agregar Libro
+        #lista-libros.lista-oculta(style='overflow-y: scroll;max-height: 300px;')
+            table.table(border="1")
+                thead
+                    tr
+                        th ISBN
+                        th Titulo
+                        th Descripcion
+                        th Genero ID
+                        th Año
+                        th Cantidad de Páginas
+                tbody
+                    if libros && libros.length > 0
+                        each libro in libros
+                            tr
+                                td #{libro.ISBN}
+                                td #{libro.titulo}
+                                td #{libro.descripcion}
+                                td #{libro.genero_id}
+                                td #{libro.year}
+                                td #{libro.cantidadPaginas}
+                        else
+                            tr
+                                td(colspan="6") No hay libros disponibles.
+        form#formulario-libro.formulario-oculto
+            h3 Agregar Nuevo Libro
+            .campo
+               
+                input(type="hidden", id="isbn", name="isbn" required)
+            .campo
+                label(for="titulo") Título:
+                input(type="text", id="titulo", name="titulo" required)
+            .campo
+                label(for="descripcion") Descripción:
+                textarea(id="descripcion", name="descripcion" required)
+            .campo
+                label(for="genero") Elige una Género:
+                select(name="genero" id="genero" required)
+
+                    if generos && generos.length > 0
+                        option(value="" disabled selected) -- Seleccionar --
+                        each gen in generos
+                            option(value=gen.id) #{gen.descripcion}
+                    else 
+                        option(value="" disabled selected) -- No hay generos disponibles --
+                   
+            .campo
+                label(for="year") Año:
+                input(type="number", id="year", name="year" required)
+            .campo
+                label(for="cantidadPaginas") Cantidad de Páginas:
+                input(type="number", id="cantidadPaginas", name="cantidadPaginas" required)
+            p#info
+            button#btn-guardar-libro(type="submit") Guardar Libro
+            button#btn-cancelar-libro(type="button") Cancelar
+
+    .modulo
+        h2 Gestión de Autores
+        button#btn-mostrar-autores Mostrar Autores
+        button#btn-agregar-autor Agregar Autor
+        #lista-autores.lista-oculta
+        form#formulario-autor.formulario-oculto
+            h3 Agregar Nuevo Autor
+            .campo
+                label(for="nombre-autor") Nombre:
+                input(type="text", id="nombre-autor", name="nombre-autor")
+            .campo
+                label(for="documento-autor") Documento:
+                input(type="text", id="documento-autor", name="documento-autor")
+            .campo
+                label(for="mail-autor") Email:
+                input(type="email", id="mail-autor", name="mail-autor")
+            .campo
+                label(for="foto-autor") Foto (URL):
+                input(type="url", id="foto-autor", name="foto-autor")
+            button#btn-guardar-autor(type="button") Guardar Autor
+            button#btn-cancelar-autor(type="button") Cancelar
+
+    
+
+    script(src="/js/navegacion.js")
